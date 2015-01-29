@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ZakarFin/modularjs.svg?branch=master)](https://travis-ci.org/ZakarFin/modularjs)
+# Modulas JS experiment [![Build Status](https://travis-ci.org/ZakarFin/modularjs.svg?branch=master)](https://travis-ci.org/ZakarFin/modularjs)
 
 ### Install packages
 
