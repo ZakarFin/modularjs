@@ -40,6 +40,7 @@
                 // do we need name at all?
                 this.getFileList(function() {
                     _loadImplementation(function(resources) {
+                        // register bundle to Registry so next call to createInstance() can use it?
                         var instance = {};
                         if(_.isObject(config)) {
                             _.forIn(config, function(value, key) {
