@@ -2,7 +2,8 @@
 define([
     'tests/class-definition',
     'tests/storage',
-    'tests/eventbus'], function(){
+    'tests/eventbus',
+    'tests/module'], function(){
     return {
         unit : arguments
     }
