@@ -6,7 +6,15 @@
 
 ### To run tests
 
+Locally:
+
 	npm test
+
+Using https://saucelabs.com:
+
+    export SAUCE_USERNAME=<username>
+    export SAUCE_ACCESS_KEY=<access key>
+    npm run saucetest
 
 ### To run JS Hint
 

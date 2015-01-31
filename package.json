@@ -16,7 +16,8 @@
     "jshint": "^2.6.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/intern-client config=tests/intern",
+    "test": "./node_modules/.bin/intern-client config=config/intern",
+    "saucetest": "./node_modules/.bin/intern-runner config=config/intern",
     "analyse": "./node_modules/jshint/bin/jshint src",
     "browserify" : "./node_modules/browserify/bin/cmd.js src/*.js > src-all.js"
   },
