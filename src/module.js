@@ -40,11 +40,12 @@
                 // do we need name at all?
                 this.getFileList(function() {
                     _loadImplementation(function(resources) {
-                        config = config || {};
                         var instance = {};
-                        _.forIn(config, function(value, key) {
-                            instance[key] = value;
-                        });
+                        if(_.isObject(config)) {
+                            _.forIn(config, function(value, key) {
+                                instance[key] = value;
+                            });
+                        }
                         // var instance = _startMainFile(files, config, resources);
                         // log('Created an instance of module ' + _name + ' with name ' + name)
                         done(instance);
