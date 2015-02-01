@@ -3,11 +3,8 @@
 ### TODO:
 
 * Remove append from Storage
-
 * Finalize module loading
-
 * Finalize module inheritance
-
 * Finalize and test eventbus
 
 ### Install packages
