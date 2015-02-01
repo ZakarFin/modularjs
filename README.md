@@ -7,9 +7,13 @@
 * Finalize module inheritance
 * Finalize and test eventbus
 
-### Install packages
+### Install tools packages
 
 	npm install
+
+### Install libraries needed by frontend code
+
+    npm run loadlibs
 
 ### To run tests
 

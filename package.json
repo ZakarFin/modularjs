@@ -21,7 +21,7 @@
     "test": "./node_modules/.bin/intern-client config=config/intern",
     "saucetest": "./node_modules/.bin/intern-runner config=config/intern",
     "analyse": "./node_modules/jshint/bin/jshint src",
-    "bower": "./node_modules/bower/bin/bower",
+    "loadlibs": "./node_modules/bower/bin/bower install",
     "browserify": "./node_modules/browserify/bin/cmd.js src/*.js > src-all.js"
   },
   "author": "Sami Mäkinen",
