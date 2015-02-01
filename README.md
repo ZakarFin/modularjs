@@ -3,9 +3,9 @@
 ### TODO:
 
 * Remove append from Storage
-* Finalize module loading
+* Finalize module loading (libs(dependencies), resources (css/locale.json/templates))
 * Finalize module inheritance
-* Finalize and test eventbus
+* Finalize and test the eventbus
 
 ### Install tools packages
 
