@@ -16,9 +16,36 @@
             // 1) require impl files + styles
             // 2) require json + templates as resources and call done() with them(?)
             // TODO: maybe handle localization like override and merge the json to the "inherited" one
+            var list = []; // generated based on fileliset
+            list = filelist; // debug..
             var resources = {};
-            require(filelist, function() {
-                done(resources);
+            if(list.length === 0) {
+                done();
+                return;
+            }
+            // we need to get the requirejs implementation for this
+            //console.dir(require);
+            //_.forIn(requirejs, console.log)
+            //console.log(requirejs.requirejs);
+            require(list, function() {
+                done(list[0].value, resources);
+            });
+        };
+
+        var _loadFirstExisting = function(files, done, errorHandler) {
+            var file = files.shift();
+
+            // now loads just js, TODO: load minified css + other resources
+            require([file.file], function(value) {
+                console.log('got ' + file.file);
+                //if(file.type === 'list') {
+                    file.value = value;
+                //}
+                filelist.push(file);
+                done(filelist);
+            }, function() {
+                console.log('error loading ' + file.file);
+                errorHandler();
             });
         };
 
@@ -26,8 +53,8 @@
             createInstance : function(name, config, done) {
                 // normalize params
                 if(typeof done !== 'function') {
-                    config = name;
                     done = config;
+                    config = name;
                 }
                 if(typeof done !== 'function') {
                     done = config;
@@ -35,18 +62,19 @@
                 }
                 if(typeof done !== 'function') {
                     // log('No done callback');
-                    return; 
+                    return {}; 
                 }
                 // do we need name at all?
                 this.getFileList(function() {
-                    _loadImplementation(function(resources) {
+                    _loadImplementation(function(instance, resources) {
                         // register bundle to Registry so next call to createInstance() can use it?
-                        var instance = {};
+                        instance = instance || {};
                         if(_.isObject(config)) {
                             _.forIn(config, function(value, key) {
                                 instance[key] = value;
                             });
                         }
+                        // determine main file and start it to get instance
                         // var instance = _startMainFile(files, config, resources);
                         // log('Created an instance of module ' + _name + ' with name ' + name)
                         done(instance);
@@ -62,13 +90,30 @@
                     { file : "locale/en.json" }    // type == localization
                 ]
                 */
-                // TODO:
                 // 1) try minified.js + css + json + templates?
                 // 2) try generated-filelist.json for dev-version
-                if(filelist.length === 0) {
-                    // 3) log("Couldn't find implementation files for bundle " + _name)
-                }
-                done(filelist);
+                var filesToTry = [ {
+                    file : basedir + name + '.min.js',
+                    type : 'impl'
+                }, {
+                    // should be prefixed with 'json!', but doesn't work correctly on node?
+                    file : basedir + name + '/generated.list.json',
+                    type : 'list'
+                }];
+                var errorHandler = function() {
+                    // file not found!!!
+                    if(filesToTry.length > 0 ) {
+                        // recursion if theres more options
+                        _loadFirstExisting(filesToTry, done, errorHandler);
+                        return;
+                    }
+                    if(filelist.length === 0) {
+                        // 3) log("Couldn't find implementation files for bundle " + _name)
+                    }
+                    done(filelist);
+                };
+                _loadFirstExisting(filesToTry, done, errorHandler);
+
             },
             // enables overriding a file or two/changing resources for bundle
             // while getting the implementation from another bundle

@@ -40,8 +40,10 @@ define({
 	// The desired AMD loader to use when running unit tests (client.html/client.js). Omit to use the default Dojo
 	// loader
 	useLoader: {
-		'host-node': 'dojo/dojo',
+		//'host-node': 'dojo/dojo',
+		'host-node': 'requirejs',
 		'host-browser': 'node_modules/dojo/dojo.js'
+		//'host-browser': 'node_modules/requirejs/require.js'
 	},
 
 	// Configuration options for the module loader; any AMD configuration options supported by the specified AMD loader
@@ -56,7 +58,8 @@ define({
 	        },
 	        '*': {
 	            'intern/dojo': 'intern/node_modules/dojo',
-	    		'lodash' : 'node_modules/lodash/lodash'
+	    		'lodash' : 'node_modules/lodash/lodash',
+	    		'requirejs' : 'node_modules/requirejs/require'
 	        }
 	    }
 	},
@@ -68,5 +71,5 @@ define({
 	functionalSuites: [ /* 'myPackage/tests/functional' */ ],
 
 	// A regular expression matching URLs to files that should not be included in code coverage analysis
-	excludeInstrumentation: /^(?:tests|node_modules)\//
+	excludeInstrumentation: /^(?:tests|node_modules|bower_components)\//
 });

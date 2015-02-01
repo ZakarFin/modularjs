@@ -11,15 +11,18 @@
     "lodash": "^2.4.1"
   },
   "devDependencies": {
+    "bower": "^1.3.12",
     "browserify": "^8.1.1",
     "intern": "^2.2.2",
-    "jshint": "^2.6.0"
+    "jshint": "^2.6.0",
+    "requirejs": "^2.1.15"
   },
   "scripts": {
     "test": "./node_modules/.bin/intern-client config=config/intern",
     "saucetest": "./node_modules/.bin/intern-runner config=config/intern",
     "analyse": "./node_modules/jshint/bin/jshint src",
-    "browserify" : "./node_modules/browserify/bin/cmd.js src/*.js > src-all.js"
+    "bower": "./node_modules/bower/bin/bower",
+    "browserify": "./node_modules/browserify/bin/cmd.js src/*.js > src-all.js"
   },
   "author": "Sami Mäkinen",
   "license": "MIT"
