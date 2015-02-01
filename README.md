@@ -1,5 +1,15 @@
 # Modular JS experiment [![Build Status](https://travis-ci.org/ZakarFin/modularjs.svg?branch=master)](https://travis-ci.org/ZakarFin/modularjs)
 
+### TODO:
+
+* Remove append from Storage
+
+* Finalize module loading
+
+* Finalize module inheritance
+
+* Finalize and test eventbus
+
 ### Install packages
 
 	npm install
