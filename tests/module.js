@@ -60,5 +60,19 @@ define([
             }, dfd.reject.bind(dfd)));
 
         });
+        tdd.test('createInstance with modules/myns/mymodule/module.js', function() {
+
+            var dfd = this.async(1000);
+
+            var module = new Module(Registry, 'myns/mymodule', 'modules/');
+            module.createInstance({ 'temp' : 'temp value'}, dfd.callback(function(instance) {
+                assert.ok(instance, 'Should always return non null value');
+                assert.isTrue(_.isObject(instance), 'Should always return an object');
+                assert.equal(instance.temp, 'temp value', 'Config copied');
+                assert.equal(typeof instance.start, 'function', 'Has start');
+                assert.equal(instance.start(), 'my module test content', 'Start() returns our test content');
+            }, dfd.reject.bind(dfd)));
+
+        });
     });
 });

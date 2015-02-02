@@ -23,13 +23,19 @@
                 done();
                 return;
             }
-            // we need to get the requirejs implementation for this
-            //console.dir(require);
-            //_.forIn(requirejs, console.log)
-            //console.log(requirejs.requirejs);
-            require(list, function() {
+            // FIXME: this index 0 nonsense is just wrong, fix ASAP please...
+            if(filelist[0].type === 'impl') {
                 done(list[0].value, resources);
-            });
+            }
+            else if(filelist[0].type === 'list') {
+                // argh, my eyes...
+                console.log(list[0].value[0].file);
+                require([basedir + name + '/' + list[0].value[0].file], function(inst) {
+                    console.log('list require ' + inst);
+                    done(inst, resources);
+                });
+            }
+
         };
 
         var _loadFirstExisting = function(files, done, errorHandler) {
@@ -96,10 +102,13 @@
                     file : basedir + name + '.min.js',
                     type : 'impl'
                 }, {
-                    // should be prefixed with 'json!', but doesn't work correctly on node?
-                    file : basedir + name + '/generated.list.json',
+                    file : 'json!' + basedir + name + '/generated.list.json',
                     type : 'list'
-                }];
+                }
+                /*, {
+                    file : basedir + name + '/module',
+                    type : 'impl'
+                }*/];
                 var errorHandler = function() {
                     // file not found!!!
                     if(filesToTry.length > 0 ) {
