@@ -46,7 +46,6 @@
     
     Returns an object with functions: 
     - reset(key) : removes value from the key or resets the whole storage if omitted
-    - exists(list, value) : returns true if list already includes value
     - data(key, value) : 
         - the actual method name can be overridden with constructor arg (defaults to data)
     */
