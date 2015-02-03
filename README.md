@@ -2,7 +2,6 @@
 
 ### TODO:
 
-* Remove append from Storage
 * Finalize module loading (libs(dependencies), resources (css/locale.json/templates))
 * Finalize module inheritance
 * Finalize and test the eventbus

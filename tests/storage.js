@@ -19,14 +19,21 @@ define([
             assert.equal(store.data()[0], "my key", 'Store should return the used key');
         });
 
-        tdd.test('simple store', function() {
+        tdd.test('Store with validator and default value', function() {
             var store = new Storage({
                 validator : function(value) {
                     // only allow functions to be stored as handlers
                     return typeof value === 'function';
                 },
-                defaultValue : []
+                defaultValue : function() {
+                    return "default";
+                }
             });
+            var success = store.data("key", "value")
+            assert(!success, 'Validator should have rejected a non-function value');
+            assert.equal(store.data().length, 0, 'Store should have be empty');
+            assert.equal(store.data("anykey")(), "default", 'Default value should be given for keys not set');
         });
+
     });
 });
