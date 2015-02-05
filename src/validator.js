@@ -11,4 +11,4 @@
             return _.isArray(list) && _.find(list, function(existing) { return test === existing; });
         }
     };
-});
+}));

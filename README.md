@@ -4,7 +4,9 @@
 
 * Finalize module loading (libs(dependencies), resources (css/locale.json/templates))
 * Finalize module inheritance
-* Finalize and test the eventbus
+* Add a hook to catch new typed definitions in registry perhaps using eventbus? (event like ~TypedClassDefined)
+* Maybe make storage a class that can be inherited?
+* Maybe make eventbus a class that can be inherited or try hooking registry typedClass event to attach eventbus to class thats typed ~Observable?
 
 ### Install tools packages
 

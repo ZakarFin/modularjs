@@ -1,29 +1,36 @@
 (function (global, factory) {
-    if (typeof define === "function" && define.amd) define(["lodash", "./storage"], factory);
+    if (typeof define === "function" && define.amd) define(["lodash", "./storage", "./validator"], factory);
     else if (typeof module === "object")  module.exports = factory;
     else {
         // lodash expected as global "_"
-        global.EventBus = factory(_);
+        global.EventBus = factory(_, global.Storage, global.Validator);
     }
-}(( typeof window === 'object' && window ) || this, function(_, Storage) {
+}(( typeof window === 'object' && window ) || this, function(_, Storage, Validator) {
 
     var EventBus = function() {
+
         var store = new Storage("subscribers", {
-            validator : function(value) {
-                // only allow functions to be stored as handlers
-                return typeof value === 'function';
-            },
             defaultValue : []
         });
         return {
             "on" : function(event, handlerFn) {
-                return store.subscribers(event, handlerFn, true);
+                // only allow functions to be stored as handlers
+                if(typeof handlerFn !== 'function') {
+                    return false;
+                }
+                var list = store.subscribers(event);
+                // check for duplicates
+                if(Validator.existsInList(list, handlerFn)) {
+                    return false;
+                };
+                list.push(handlerFn);
+                return store.subscribers(event, list);
             },
             "off" : function(event, handlerFn) {
                 var currentSubs = store.subscribers(event);
                 // remove if handlerFn found in currentSubs
                 var success = false;
-                for (n = 0; n < currentSubs.length; n++) {
+                for (var n = 0; n < currentSubs.length; n++) {
                     if (currentSubs[n] === handlerFn) {
                         currentSubs.splice(n, 1);
                         success = true;
