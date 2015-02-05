@@ -35,5 +35,38 @@ define([
             assert.equal(store.data("anykey")(), "default", 'Default value should be given for keys not set');
         });
 
+        tdd.test('Store with given method name', function() {
+            var store = new Storage("prop");
+            assert.equal(typeof store.prop, "function", 'Methodname should have changed');
+            assert(store.data == undefined, 'Data() method should be gone');
+            var success = store.prop("key", "value")
+            assert(success, 'Value should have been accepted');
+            assert.equal(store.prop().length, 1, 'Store should have one value');
+            assert(store.prop("anykey") == undefined, 'Default value is missing');
+        });
+        tdd.test('Store with given method name and config', function() {
+            var store = new Storage("prop" , {
+                defaultValue : 'my default'
+            });
+            assert.equal(typeof store.prop, "function", 'Methodname should have changed');
+            assert(store.data == undefined, 'Data() method should be gone');
+            var success = store.prop("key", "value")
+            assert(success, 'Value should have been accepted');
+            assert.equal(store.prop().length, 1, 'Store should have one value');
+            assert.equal(store.prop("anykey"), 'my default', 'Default value should be given for keys not set');
+
+            store.prop("key2", "value2");
+            store.prop("key3", "value3");
+            assert.equal(store.prop().length, 3, 'Store should have 3 values');
+            assert.equal(store.prop("key2"), 'value2', 'Should return correct value');
+            store.reset("key2");
+            assert.equal(store.prop().length, 2, 'Store should have 2 values');
+            assert.equal(store.prop("key2"), 'my default', 'Should return default value');
+
+            store.reset();
+            assert.equal(store.prop().length, 0, 'Store should be empty');
+            assert.equal(store.prop("key"), 'my default', 'Should return default value');
+        });
+
     });
 });

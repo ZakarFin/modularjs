@@ -35,9 +35,6 @@
             return collection[key] || defaultValue;
         }
     };
-    var exists = function(list, test) {
-        return _.isArray(list) && _.find(list, function(existing) { return test === existing; });
-    };
     /*
     Returns an object with given methodName (defaults to 'data' if missing -> uses options as first param)
     options is an (optional) object with keys:
