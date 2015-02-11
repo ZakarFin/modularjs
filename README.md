@@ -1,4 +1,7 @@
-# Modular JS experiment [![Build Status](https://travis-ci.org/ZakarFin/modularjs.svg?branch=master)](https://travis-ci.org/ZakarFin/modularjs)
+# Modular JS experiment 
+
+[![Build Status](https://travis-ci.org/ZakarFin/modularjs.svg?branch=master)](https://travis-ci.org/ZakarFin/modularjs) 
+[![Dependency Status](https://gemnasium.com/ZakarFin/modularjs.svg)](https://gemnasium.com/ZakarFin/modularjs)
 
 ### TODO:
 
