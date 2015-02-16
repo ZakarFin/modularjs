@@ -22,7 +22,7 @@
                 // check for duplicates
                 if(Validator.existsInList(list, handlerFn)) {
                     return false;
-                };
+                }
                 list.push(handlerFn);
                 return store.subscribers(event, list);
             },
