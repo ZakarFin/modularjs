@@ -38,4 +38,9 @@ Using https://saucelabs.com:
 ### To run Browserify (creates src-all.js file)
 
 	npm run browsersify
-	
+
+### To check code style and fix issues with JSCS
+
+Check http://jscs.info for details
+
+    npm run format
