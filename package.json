@@ -23,14 +23,14 @@
     "test": "./node_modules/.bin/intern-client config=config/intern",
     "saucetest": "./node_modules/.bin/intern-runner config=config/intern",
     "format": "./node_modules/.bin/jscs --fix -v src",
-    "analyse": "./node_modules/jshint/bin/jshint src",
+    "lint": "./node_modules/jshint/bin/jshint src",
     "loadlibs": "./node_modules/bower/bin/bower install",
     "browserify": "./node_modules/browserify/bin/cmd.js src/*.js > src-all.js"
   },
   "author": "Sami Mäkinen",
   "license": "MIT",
   "pre-commit": [
-    "analyse",
+    "lint",
     "test"
   ]
 }

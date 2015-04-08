@@ -33,7 +33,7 @@ Using https://saucelabs.com:
 
 ### To run JS Hint
 
-	npm run analyse
+	npm run lint
 
 ### To run Browserify (creates src-all.js file)
 
