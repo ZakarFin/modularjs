@@ -14,6 +14,7 @@
     "bower": "^1.4.0",
     "browserify": "^9.0.7",
     "intern": "^2.2.2",
+    "jscs": "^1.12.0",
     "jshint": "^2.6.0",
     "pre-commit": "^1.0.6",
     "requirejs": "^2.1.15"
@@ -21,6 +22,7 @@
   "scripts": {
     "test": "./node_modules/.bin/intern-client config=config/intern",
     "saucetest": "./node_modules/.bin/intern-runner config=config/intern",
+    "format": "./node_modules/.bin/jscs --fix -v src",
     "analyse": "./node_modules/jshint/bin/jshint src",
     "loadlibs": "./node_modules/bower/bin/bower install",
     "browserify": "./node_modules/browserify/bin/cmd.js src/*.js > src-all.js"
