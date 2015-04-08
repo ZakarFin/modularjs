@@ -15,6 +15,8 @@
 
 	npm install
 
+Note! This installs npm pre-commit module which overwrites any git pre-commit hooks you might have
+
 ### Install libraries needed by frontend code
 
     npm run loadlibs
